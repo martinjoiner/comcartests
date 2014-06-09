@@ -1,0 +1,56 @@
+#wrapper{
+	width: 800px;
+	margin: 150px auto 0 auto;
+	-webkit-perspective: 400;
+	-webkit-perspective-origin: 50% 90px;
+	-webkit-transition: -webkit-perspective, 1s;
+}
+
+#wrapper:hover{
+	-webkit-perspective-origin: 50% 140px;
+}
+
+#wrapper:hover #shape{
+	-webkit-animation-play-state: paused;
+}
+
+@-webkit-keyframes spin {
+	from { -webkit-transform: rotateX(0); }
+	to { -webkit-transform: rotateX(-360deg); }
+}
+
+#shape{
+	margin: 0 auto;
+	height: 200px;
+	width: 200px;
+	-webkit-transform-style: preserve-3d;
+	-webkit-animation: spin 8s infinite linear;
+}
+
+.plane{
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	position: absolute;
+	-webkit-transition: width 1s, height 1s;
+}
+
+.plane object{
+	width: 100%;
+	height: 100%;
+}
+
+.plane:hover{
+	cursor: pointer;
+	width: 220px;
+	height: 220px;
+}
+
+#shape > .p1{ -webkit-transform: translateZ(250px); }
+#shape > .p2{ 	-webkit-transform: rotateX(45deg) translateZ(250px); }
+#shape > .p3{ -webkit-transform: rotateX(90deg) translateZ(250px); }
+#shape > .p4{ -webkit-transform: rotateX(135deg) translateZ(250px); }
+#shape > .p5{ -webkit-transform: rotateX(180deg) translateZ(250px); }
+#shape > .p6{ -webkit-transform: rotateX(225deg) translateZ(250px); }
+#shape > .p7{ -webkit-transform: rotateX(270deg) translateZ(250px); }
+#shape > .p8{ -webkit-transform: rotateX(315deg) translateZ(250px); }

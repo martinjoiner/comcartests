@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mouse Click</title>
+	<style type="text/css">
+	body{
+		font-family: arial, sans-serif;
+		text-align: center;
+	}
+	#testarea{
+		border: 3px dashed #888;
+		width: 80%;
+		padding: 200px 0;
+		margin: 1em auto;
+		text-align: center;
+		color: #DDD;
+	}
+	</style>
+</head>
+<body>
+	<h1>Mouse Clicks</h1>
+	<div id="testarea">
+		Whip open your console and click in here to test
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+	<script>
+	$('#testarea').mousedown(function(event) {
+	    switch (event.which) {
+	        case 1:
+	            console.log('Left mouse button pressed');
+	            break;
+	        case 2:
+	            console.log('Middle mouse button pressed');
+	            break;
+	        case 3:
+	            console.log('Right mouse button pressed');
+	            break;
+	        default:
+	            console.log('You have a strange mouse');
+	    }
+	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<h1>Fibonacci</h1>
+
+<cfscript>
+	
+	arrFibs = [0,1];
+	while( arrFibs[ ArrayLen(arrFibs) ] < 1000 ){
+		newNumber = arrFibs[ ArrayLen(arrFibs) ] + arrFibs[ ArrayLen(arrFibs) - 1 ];
+		arrayAppend( arrFibs, newNumber );
+	}
+
+	// Now to Print (in a component these should be separate functions)
+	cntNums = ArrayLen(arrFibs);
+	// Normally <= but in this case the last number will be over 1000 so stop just before.
+	for( i = 1; i < cntNums; i++ ){
+		writeOutput( arrFibs[i] & ', ' );
+	}
+
+</cfscript>
+
+<h1>FizzBuzz</h1>
+
+<cfscript>
+
+	for( i = 1; i <= 50; i++){
+		printNumberOrEquiv(i);
+	}
+
+	function printNumberOrEquiv( thisNum ){
+		var html = '';
+		var matchedFizzOrBuzz = false;
+
+		// Test multiple of 3 for "Fizz"
+		if( thisNum % 3 == 0 ){
+			html &= 'Fizz';
+			matchedFizzOrBuzz = true;
+		}
+
+		// Test multiple of 5 for "Buzz"
+		if( thisNum % 5 == 0 ){
+			html &= 'Buzz';
+			matchedFizzOrBuzz = true;
+		}
+
+		if( !matchedFizzOrBuzz ){
+			html &= thisNum;
+		}
+
+		writeOutput( html & ', ' );
+
+	}
+
+</cfscript>

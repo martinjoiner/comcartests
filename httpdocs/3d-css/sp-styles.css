@@ -1,0 +1,23 @@
+#main{
+	fill-rule: evenodd;
+	fill: red;
+	stroke: black;
+	stroke-width: 1;
+}
+
+polyline,path
+{
+	stroke: 0;
+	stroke-linejoin: butt;
+	fill: #003565;
+}
+
+polyline.orange{
+	fill: #ff6400;
+}
+
+.pink{
+	fill: #ec008c;
+	fill-rule: evenodd;
+	stroke-width: 1;
+}
