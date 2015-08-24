@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Combo Box Test</title>
+
+		<style type="text/css">
+			.comboWrap{
+				float: left;
+			}
+			.comboWrap > *{
+				width: 200px;
+				float: left;
+				clear: left;
+			}
+		</style>
+
+	</head>
+	<body>
+		
+		<label for="inpOptions">Country</label>
+
+		<div class="comboWrap">
+			<input type="text" name="inpOptions" id="inpOptions">
+
+			<select id="lstOptions" size="5">
+				<optgroup label="Browsers">
+					<option value="Internet Explorer">Internet Explorer</option>
+					<option value="Firefox">Firefox</option>
+					<option value="Chrome">Chrome</option>
+					<option value="Opera">Opera</option>
+					<option value="Safari">Safari</option>
+				</optgroup>
+				<optgroup label="Lancashire">
+					<option>Fishtown</option>
+					<option>Newport</option>
+				</optgroup>
+				<optgroup label="Somerset">
+					<option>Yoevil</option>
+					<option>Taunton</option>
+					<option>Bridgwater</option>
+					<option>Wellington</option>
+					<option>North Petherton</option>
+				</optgroup>
+				<optgroup label="Wales">
+					<option>Newport</option>
+					<option>Cardiff</option>
+				</optgroup>
+			</select> 
+		</div>
+	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+		<script>
+			$('#inpOptions').on( 'keyup paste', function(){
+				
+				filterList( $(this).val(), '#lstOptions' )
+
+			});
+
+			function filterList( q, strSelector ){
+				var arrChildren = $('#lstOptions').children();
+				var iLimit = arrChildren.length;
+				var currentItem;
+				for( var i = 0; i < iLimit; i++ ){
+					currentItem = arrChildren[i];
+					if( currentItem.nodeName === 'OPTGROUP' ){
+
+						// If the optgroup label matches, don't hide anything inside it
+						if( currentItem.label.match(q) ){
+							$(currentItem).css('display', 'block');
+							makeOptionsVisible( currentItem );
+						} else {
+
+							if( filterOptGroup( q, currentItem ) ){
+								$(currentItem).css('display', 'block');
+							} else {
+								$(currentItem).css('display', 'none');
+							}
+						}
+					}
+				}
+			}
+
+			// Returns number of visible children
+			function filterOptGroup( q, elemOptGroup ){
+				var arrOptions = $(elemOptGroup).children();
+				var iLimit = arrOptions.length;
+				var currentItem;
+				var returnCount = 0;
+				for( var i = 0; i < iLimit; i++ ){
+					currentItem = arrOptions[i];
+					if( currentItem.value.match(q) ){
+						$( currentItem ).css('display', 'block');
+						returnCount++; 
+					} else {
+						$( currentItem ).css('display', 'none');
+					}
+				}
+				return returnCount;
+			}
+
+			function makeOptionsVisible( elemOptGroup ){
+				var arrOptions = $(elemOptGroup).children();
+				var iLimit = arrOptions.length;
+				var currentItem;
+				for( var i = 0; i < iLimit; i++ ){
+					currentItem = arrOptions[i];
+					$( currentItem ).css('display', 'block');
+				}
+
+			}
+
+		</script>
+	</body>
+</html>

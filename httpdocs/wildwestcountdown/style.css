@@ -1,0 +1,14 @@
+body{
+	/* background-color: #111; */
+}
+
+h1{
+	font-size: 3em;
+	
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+    font-family: 'Oleo Script Swash Caps', cursive;
+}
+
+h1 span{
+    font-size: 1.7em;
+}

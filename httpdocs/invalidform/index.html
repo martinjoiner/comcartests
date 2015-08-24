@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+    body{
+    	font-family: sans-serif;
+    	font-family: Montserrat,sans-serif;
+    	padding: 1em;
+    }
+	    input{
+	    	padding: 0.6em;
+	    }
+        input[type=submit]{
+            cursor: pointer;
+        }
+        form:invalid input[type=submit]{
+            cursor: default;
+            opacity: 0.5;
+        }
+        input[type=text]{
+            border: 1px solid #666;
+        }
+        input[type=text]:invalid{
+            border-color: red;
+        }
+    </style>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:700,400' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	<h1>form:invalid</h1>
+    <form>
+        <input type="text" name="username" pattern="[A-9a-z0-9 ]*" required>
+        <input type="submit">
+    </form>
+    <br>
+    <form>
+        <input type="text" name="username" pattern="[A-9a-z0-9 ]*" required>
+        <input type="submit">
+    </form>
+</body>
+</html>
