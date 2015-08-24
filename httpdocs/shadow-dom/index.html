@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+
+	h1{
+		text-align: center;
+		padding: 1.6em 0;
+	}
+
+	.article{
+		letter-spacing: .1em;
+		font-family: serif;
+		line-height: 2.2;
+		font-size: 1.1em;
+		color: #444;
+		width: 50%;
+		margin-left: 25%;
+	}
+	
+	.article p::first-letter{
+		font-size: 13.7em;
+		line-height: 0.65em;
+		float: left;
+		margin: .05em;
+	}
+
+	</style>
+</head>
+<body>
+	<div id="article">
+
+		<h1>Grande magnifique merde</h1>
+			
+		<p>Bloomin' 'eck sup wi' 'im shurrup ah'll gi' thee a thick ear. Ey up michael palin sup wi' 'im soft lad nobbut a lad. 
+		Tintintin nay lad ah'll gi' thee a thick ear wacken thi sen up that's champion by 'eck. Will 'e 'eckerslike any rooad 
+		soft southern pansy. Ey up tell thi summat for nowt t'foot o' our stairs th'art nesh thee is that thine cack-handed. 
+		Cack-handed ee by gum tha what that's <a href="http://google.com?q=champion">champion</a> ah'll gi' thi summat to rooer abaht will 'e 'eckerslike. Wacken thi 
+		sen up bloomin' 'eck tha daft apeth michael palin eeh ah'll learn thi. Gerritetten. Ah'll gi' thi summat to rooer 
+		abaht. T'foot o' our stairs aye th'art nesh thee ah'll gi' thi summat to rooer abaht. Tintintin face like a slapped 
+		arse t'foot o' our stairs shu' thi gob is that thine. Nobbut a lad shurrup big girl's blouse soft lad ah'll gi' thi 
+		summat to rooer abaht cack-handed. Eeh. Tintintin by 'eck be reet. Appens as maybe bloomin' 'eck bloomin' 'eck 
+		breadcake big girl's blouse.</p>
+
+	</div>
+
+	<template id="nameTagTemplate">
+		<style>
+			.outer{
+			  border: 2px solid aliceblue;
+			  border-radius: 1em;
+			  font-size: 13px;
+			  text-align: center;
+			  font-family: sans-serif;
+			  font-weight: bold;
+			}
+			.name{
+			  font-size: 45pt;
+			  font-weight: normal;
+			  margin-top: 0.8em;
+			  padding-top: 0.2em;
+			}
+		</style>
+		<div class="outer">
+			<div class="name">
+				<content select="h1"></content>
+			</div>
+			<div class="deepText">
+				<content select="p"></content>
+			</div>
+		</div>
+	</template>
+
+	<script>
+		var shadow = document.querySelector('#article').createShadowRoot();
+		var template = document.querySelector('#nameTagTemplate');
+		var clone = document.importNode(template.content, true);
+		shadow.appendChild(clone);
+	</script>
+</body>
+</html>
