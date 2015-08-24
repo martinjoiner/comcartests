@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<style type="text/css">
+
+		.person{
+			width: 360px;
+			overflow: hidden;
+			float: left;
+			margin: 1em;
+		}
+
+		.person h2{
+			margin: 0;
+		}
+
+		.person meter{
+			width: 100%;
+		}
+
+		.sad, .happy{
+			display: none;
+		}
+
+	</style>
+
+</head>
+<body>
+
+	<div class="person adrian">
+		<h2>Adrian</h2>
+		<img src="gif/AdrianSad.gif" class="sad">
+		<img src="gif/AdrianHappy.gif" class="happy">
+		<meter class="happiness" min="0" low="33"  high="66" optimum="90" max="100" value="50">Happiness</meter>
+	</div>	
+
+	<div class="person alex">
+		<h2>Alex</h2>
+		<img src="gif/AlexSad.gif" class="sad">
+		<img src="gif/AlexHappy.gif" class="happy"><meter class="happiness" min="0" low="33"  high="66" optimum="90" max="100" value="50">Happiness</meter>
+	</div>
+
+	<div class="person xevi">
+		<h2>Xevi</h2>
+		<img src="gif/XeviSad.gif" class="sad">
+		<img src="gif/XeviHappy.gif" class="happy"><meter class="happiness" min="0" low="33"  high="66" optimum="90" max="100" value="50">Happiness</meter>
+	</div>
+
+	<div class="person pete">
+		<h2>Pete</h2>
+		<img src="gif/PeteSad.gif" class="sad">
+		<img src="gif/PeteHappy.gif" class="happy"><meter class="happiness" min="0" low="33"  high="66" optimum="90" max="100" value="50">Happiness</meter>
+	</div>
+
+	<button>Make some drinks</button>
+	<button>Put some music on</button>
+	<button>Sing a little song</button>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+	<script>
+
+		arrTeam = [
+			{
+				"name": "adrian",
+				"affects": {
+					"drink": 20
+				}
+			}
+
+		];
+
+		$('button').click( function(){
+			$('.person').each( function(){
+				var decRand = Math.random();
+				var emotion = decRand > 0.5 ? '.happy' : '.sad';
+				$(this).find('.sad, .happy').hide();
+				$(this).find( emotion ).show();
+
+				$(this).find('meter').attr('value', decRand * 100);
+			});
+		});
+
+	</script>
+
+</body>
+</html>
