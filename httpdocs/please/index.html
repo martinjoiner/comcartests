@@ -2,73 +2,72 @@
 <html>
 <head>
 
-	<style type="text/css">
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 
-		.person{
-			width: 360px;
-			overflow: hidden;
-			float: left;
-			margin: 1em;
-		}
-
-		.person h2{
-			margin: 0;
-		}
-
-		.person meter{
-			width: 100%;
-		}
-
-		.sad, .happy{
-			display: none;
-		}
-
-	</style>
+	<link rel="stylesheet" href="style.css">
 
 </head>
 <body>
 
-	<div class="person adrian">
-		<h2>Adrian</h2>
-		<img src="gif/AdrianSad.gif" class="sad">
-		<img src="gif/AdrianHappy.gif" class="happy">
-		<meter class="happiness" min="0" low="33"  high="66" optimum="90" max="100" value="50">Happiness</meter>
-	</div>	
+	<div class="teamWrap"></div>
 
-	<div class="person alex">
-		<h2>Alex</h2>
-		<img src="gif/AlexSad.gif" class="sad">
-		<img src="gif/AlexHappy.gif" class="happy"><meter class="happiness" min="0" low="33"  high="66" optimum="90" max="100" value="50">Happiness</meter>
+	<div class="actionsWrap">
+		<button>Make some drinks</button>
+		<button>Put some music on</button>
+		<button>Sing a little song</button>
 	</div>
-
-	<div class="person xevi">
-		<h2>Xevi</h2>
-		<img src="gif/XeviSad.gif" class="sad">
-		<img src="gif/XeviHappy.gif" class="happy"><meter class="happiness" min="0" low="33"  high="66" optimum="90" max="100" value="50">Happiness</meter>
-	</div>
-
-	<div class="person pete">
-		<h2>Pete</h2>
-		<img src="gif/PeteSad.gif" class="sad">
-		<img src="gif/PeteHappy.gif" class="happy"><meter class="happiness" min="0" low="33"  high="66" optimum="90" max="100" value="50">Happiness</meter>
-	</div>
-
-	<button>Make some drinks</button>
-	<button>Put some music on</button>
-	<button>Sing a little song</button>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
 	<script>
 
 		arrTeam = [
 			{
-				"name": "adrian",
+				"name": "Adrian",
 				"affects": {
-					"drink": 20
+					"drink": [
+						{
+							"rule": "caffeine > 80",
+							"reaction": [ "happiness": -10 ]
+						}
+					],
+					"dance": [
+						{
+							"rule": "caffeine < 20",
+							"reaction": [ "happiness": -10 ]
+						},
+						{
+							"rule": "caffeine > 50",
+							"reaction": [ "happiness": 20 ]
+						}
+					]
 				}
+			},
+			{
+				"name": "Alex",
+			},
+			{
+				"name": "Xevi",
+			},
+			{
+				"name": "Pete",
 			}
 
 		];
+
+
+		var elemTeamWrap = $('.teamWrap');
+
+		for( var i = 0, iLimit = arrTeam.length; i < iLimit; i++ ){
+
+			$(elemTeamWrap).append('	<div class="person ' + arrTeam[i]['name'].toLowerCase() + 
+				'"><h2>' + arrTeam[i].name + 
+				'</h2><div class="imgWrap">' +
+					'<img src="gif/' + arrTeam[i].name + 'Sad.gif" class="sad">' +
+					'<img src="gif/' + arrTeam[i].name + 'Happy.gif" class="happy">' +
+				'</div>' +
+				'<label>Happiness</label><meter class="happiness" min="0" low="33"  high="66" optimum="90" max="100" value="50"></meter>' +
+			'</div>');
+		}
 
 		$('button').click( function(){
 			$('.person').each( function(){
