@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>btnReadyToPress CSS</title>
+	<style type="text/css">
+
+		body{
+			font-family: arial, sans-serif;
+		}
+		.btn{
+			display: block;
+			width: 120px;
+			text-align: center;
+			height: 32px; 
+			border: 1px solid #888; 
+			margin: 12em auto; 
+			padding: 1em 2em; 
+			line-height: 2; 
+			border-radius: 5px;
+			cursor: pointer;
+			text-shadow: 0 -1px 0 rgba(255,255,255,0.3);
+			box-shadow: inset 0 -1px 1px rgba(0,0,0,0.5),
+						inset 0 1px 1px rgba(255,255,255,0.5);
+		}
+
+		.btnReadyToPress{
+			-webkit-animation: aniReadyToPress 1.8s infinite;
+			   -moz-animation: aniReadyToPress 2s;
+				 -o-animation: aniReadyToPress 2s;
+					animation: aniReadyToPress 2s;
+		}
+
+		.btnReadyToPress:hover{
+			-webkit-animation: none;
+			   -moz-animation: none;
+				 -o-animation: none;
+					animation: none;
+			background: #4697c9;
+		}
+
+		@-webkit-keyframes aniReadyToPress{
+			0%{ background: #EEE; }
+			50%{ background: #3b81af; }
+			100%{ background: #EEE; }
+		}
+		
+		@-moz-keyframes aniReadyToPress{
+			0%{ background: #EEE; }
+			50%{ background: #3b81af; }
+			100%{ background: #EEE; }
+		}
+
+		@-o-keyframes aniReadyToPress{
+			0%{ background: #EEE; }
+			50%{ background: #3b81af; }
+			100%{ background: #EEE; }
+		}
+
+		@keyframes aniReadyToPress{
+			0%{ background: #EEE; }
+			50%{ background: #3b81af; }
+			100%{ background: #EEE; }
+		}
+
+
+	</style>
+</head>
+<body>
+
+	<div class="btn btnReadyToPress">
+		Press Me
+	</div>
+
+</body>
+</html>
