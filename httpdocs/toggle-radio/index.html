@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<style type="text/css">
+
+		body{
+			font-family: arial, sans-serif;
+			font-size: 12px;
+		}
+
+		.radioToggleGroup,
+		.radioToggleGroup legend,
+		.radioToggleGroup .radioWrap{
+			border: none;
+			width: auto;
+			display: block;
+			float: left;
+			padding: 0;
+		}
+
+		.radioToggleGroup legend,
+		.radioToggleGroup .radioWrap label{
+			line-height: 2.6;
+			height: 32px;
+		}
+
+		.radioToggleGroup legend{
+			margin-right: 5px;
+		}
+
+		.radioToggleGroup .radioWrap{
+			background: linear-gradient( to bottom, #EEE 10%, #DDD 90%);
+			border-radius: 6px;
+		}
+
+		.radioToggleGroup .radioWrap label{
+			display: block;
+			float: left;
+			background: #DDD;
+			background: transparent;
+			margin: 0;
+			padding-left: 10px;
+			padding-right: 10px;
+			cursor: pointer;
+			box-shadow: inset 1px 1px 1px rgba(255,255,255,0.5),
+						inset -1px -1px 1px rgba(0,0,0,0.5);
+		}
+
+		.radioToggleGroup .radioWrap label:hover{
+			background: #EEE;
+			background: rgba(255,255,255,0.5);
+		}
+
+		.radioToggleGroup .radioWrap label:first-of-type{
+			border-top-left-radius: 6px;
+			border-bottom-left-radius: 6px;
+		}
+
+		.radioToggleGroup .radioWrap label:last-child{
+			border-top-right-radius: 6px;
+			border-bottom-right-radius: 6px;
+		}
+
+		.radioToggleGroup .radioWrap input[type=radio]{
+			display: none;
+		}
+
+		.radioToggleGroup .radioWrap input:checked + label{
+			background-color: #CCC;
+			box-shadow: inset -1px -1px 1px rgba(255,255,255,0.5),
+						inset 1px 1px 1px rgba(0,0,0,0.5);
+			cursor: default;
+		}
+
+
+	</style>
+
+	<!--[if lte IE 8]>
+    <style type='text/css'>
+  		.radioToggleGroup .radioWrap input[type=radio]{ 
+  			display: block; 
+  			float: left;
+  			margin-top: 8px;
+  		}
+    </style>
+    <![endif]-->
+
+</head>
+<body>
+
+	<fieldset class="radioToggleGroup">
+		<legend>Private Fuel Benefit</legend>
+		<div class="radioWrap">
+			
+			<input type="radio" name="withFuel" id="withFuelTrue" value="true" checked="checked">
+			<label for="withFuelTrue" class="first">With</label>		
+			
+			<input type="radio" name="withFuel" id="withFuelMaybe" value="Maybe" checked="checked">
+			<label for="withFuelMaybe" class="first">Maybe</label>						
+			
+			<input type="radio" name="withFuel" id="widthFuelFalse" value="false">
+			<label for="widthFuelFalse">Without</label>
+
+		</div>
+	</fieldset>
+
+
+</body>
+</html>
