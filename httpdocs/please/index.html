@@ -26,30 +26,41 @@
 				"affects": {
 					"drink": [
 						{
-							"rule": "caffeine > 80",
-							"reaction": [ "happiness": -10 ]
+							"test": "caffeine > 80",
+							"reaction": { "happiness": -10 }
 						}
 					],
 					"dance": [
 						{
-							"rule": "caffeine < 20",
-							"reaction": [ "happiness": -10 ]
+							"test": "caffeine < 20",
+							"reaction": { "happiness": -10 }
 						},
 						{
-							"rule": "caffeine > 50",
-							"reaction": [ "happiness": 20 ]
+							"test": "caffeine > 50",
+							"reaction": { "happiness": 20 }
 						}
 					]
 				}
 			},
 			{
 				"name": "Alex",
+				"affects": {
+					"dance": [ 
+						{
+							"test": "true",
+							"reaction": { "happiness": +20 }
+						}
+					]
+				}
 			},
 			{
 				"name": "Xevi",
 			},
 			{
 				"name": "Pete",
+			},
+			{
+				"name": "Tim",
 			}
 
 		];
@@ -63,9 +74,11 @@
 				'"><h2>' + arrTeam[i].name + 
 				'</h2><div class="imgWrap">' +
 					'<img src="gif/' + arrTeam[i].name + 'Sad.gif" class="sad">' +
+					'<img src="gif/' + arrTeam[i].name + 'Neutral.gif" class="neutral">' +
 					'<img src="gif/' + arrTeam[i].name + 'Happy.gif" class="happy">' +
 				'</div>' +
 				'<label>Happiness</label><meter class="happiness" min="0" low="33"  high="66" optimum="90" max="100" value="50"></meter>' +
+				'<label>Caffeination</label><meter class="caffeination" min="0" max="100" value="50"></meter>' +
 			'</div>');
 		}
 

@@ -6,6 +6,7 @@ body{
 	background: linear-gradient( 45deg, #960057 2px, #670000 2px, #670000 13px, #960057 13px, #960057 16px, #670000 16px, #670000 27px, #960057 27px);
 	background-size: 20px 20px;
 }
+
 .person{
 	width: 360px;
 	overflow: hidden;
@@ -32,7 +33,7 @@ body{
 	width: 100%;
 }
 
-.sad, .happy{
+.sad, .neutral, .happy{
 	display: none;
 }	
 
@@ -58,7 +59,6 @@ body{
 }
 
 meter::-webkit-meter-bar {
-	
 	background: linear-gradient( to bottom, #DDD 0%, #EEE 100%);
 	box-shadow: 0 5px 5px -5px #333 inset;
 }
