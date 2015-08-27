@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animated Addition</title>
+
+	<style type="text/css">
+		body{
+			font-family: arial, sans-serif;
+			padding: 2em;
+		}
+		h1{
+			margin-bottom: 2em;
+		}
+		#btnSearch{
+			display: block;
+		    margin: 9px;
+		    cursor: pointer;
+		    border: 0;
+			color: #FFF;
+		    background-color: #05509a;
+		    padding: 0 2em;
+		    height: 32px;
+		    font-size: 16px;
+		    line-height: 32px;
+		    border-radius: 3px;
+		    font-weight: bold;
+		    background-image: -ms-linear-gradient(bottom, #05509a, 0%, #2567a7 50%, #3e79b5 50%, #478bcf 100%);
+		    background-image: -moz-linear-gradient(bottom, #05509a, 0%, #2567a7 50%, #3e79b5 50%, #478bcf 100%);
+		    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #05509a), color-stop(0.4999, #2567a7), color-stop(0.5, #3e79b5), color-stop(1, #478bcf));
+		    background-image: -webkit-linear-gradient(bottom, #05509a, 0%, #2567a7 50%, #3e79b5 50%, #478bcf 100%);
+		    background-image: linear-gradient(to top, #05509a, 0%, #2567a7 50%, #3e79b5 50%, #478bcf 100%);
+		}
+		hr{
+			margin-top: 2em;
+		}
+
+		input[type=number]{
+			width: 70px;
+			padding: 0.5em;
+		}
+	</style>
+</head>
+<body>
+
+	<h1>Animated Addition jQuery plugin</h1>
+	
+	<button type="submit" name="submit" id="btnSearch" class="btn btnPrimary" data-currentvalue="24120">
+		View 24,120 results
+	</button>
+	
+	<hr>
+	<input type="number" name="newNumber" value="50">
+	<button id="applyNewNumber">Go</button>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="animatedAddition.js"></script>
+	<script>
+		$('#applyNewNumber').click( function(){
+			var newNumber = $('input[name=newNumber]').val();
+			$('#btnSearch').animatedAddition(newNumber, 'View ', ' results' );
+		});
+	</script>
+
+</body>
+</html>
