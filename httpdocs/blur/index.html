@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<style type="text/css">
+
+		*{
+			font-family: arial;
+			text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+		}	
+
+		#bottom{
+			float: left;
+			width: 600px;
+			height: 450px;
+			background-image: url(d.jpg);
+		}
+			
+		#top{
+			position: relative;
+			top: 350px;
+			height: 100px;
+			width: 600px;
+			overflow: hidden;
+		}
+
+		#svg-image-blur { 
+			position: relative;
+			top: -350px;
+			height: 450px; 
+			width: 600px; 
+		}
+
+		#svg-image { 
+			filter:url(#blur-effect-1);
+		}
+
+		#reg{
+			background-color: rgba(0,0,0,0.1);
+			position: relative;
+			top: 250px;
+			left: 0;
+			padding: 20px;
+			font-size: 3em;
+			color: #FFF;
+		}
+
+		</style>
+	</head>
+	<body>
+
+		<div id="bottom">
+			<div id="top">
+				<svg id="svg-image-blur">
+				    <image x="0" y="0" id="svg-image" width="600" height="450" xlink:href="d.jpg" />
+				
+				    <filter id="blur-effect-1">
+				        <feGaussianBlur stdDeviation="3" />
+				    </filter>
+				</svg>
+			</div>
+				<div id="reg">
+					WJ07 0XB
+				</div>
+		</div>
+
+	</body>
+</html>
