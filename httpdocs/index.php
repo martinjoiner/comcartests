@@ -14,7 +14,7 @@
 	<ul>
 		<?php
 		$arrFolders = scandir($_SERVER['DOCUMENT_ROOT']);
-		$arrIgnoredFolders = array('Packages', 'node_modules', 'js', 'css', 'page', '.', '..' );
+		$arrIgnoredFolders = array('Packages', 'node_modules', 'js', 'css', '.', '..', 'index.php' );
 		foreach( $arrFolders as $thisFolder ){
 			if( !in_array($thisFolder, $arrIgnoredFolders ) ){
 				$spaceyName = preg_replace('/-/', ' ', $thisFolder);
