@@ -57,6 +57,7 @@
 
 			});
 
+			// Called on a select box of options when the content of a text search box is changed 
 			function filterList( q, strSelector ){
 				var arrChildren = $('#lstOptions').children();
 				var iLimit = arrChildren.length;
@@ -81,7 +82,7 @@
 				}
 			}
 
-			// Returns number of visible children
+			// Makes any matching options visible and returns the number of visible children
 			function filterOptGroup( q, elemOptGroup ){
 				var arrOptions = $(elemOptGroup).children();
 				var iLimit = arrOptions.length;
@@ -99,6 +100,7 @@
 				return returnCount;
 			}
 
+			// Takes an option group and makes all the child options visible
 			function makeOptionsVisible( elemOptGroup ){
 				var arrOptions = $(elemOptGroup).children();
 				var iLimit = arrOptions.length;
