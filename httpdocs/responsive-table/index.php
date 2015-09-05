@@ -58,10 +58,10 @@
 					<th scope="col" <?php if( $orderby == 'transmission' ){ print 'class="currentSort"'; }?>>
 						<a href="?orderby=transmission">Transmission</a>
 					</th>
-					<th scope="col" <?php if( $orderby == 'ptratio' ){ print 'class="currentSort"'; }?>>
+					<th scope="col" class="numeric<?php if( $orderby == 'ptratio' ){ print ' currentSort'; }?>">
 						<a href="?orderby=ptratio">PT Ratio</a>
 					</th>
-					<th scope="col" <?php if( $orderby == 'co2' ){ print 'class="currentSort"'; }?>>
+					<th scope="col" class="numeric<?php if( $orderby == 'co2' ){ print ' currentSort'; }?>">
 						<a href="?orderby=co2">CO<sub>2</sub></a>
 					</th>
 					<th>&nbsp;</th>
@@ -79,8 +79,8 @@
 					<td class="model<?php if( $orderby == 'model' ){ print ' currentSort'; }?>"><?=$vehicle['model']?></td>
 					<td class="derivative<?php if( $orderby == 'derivative' ){ print ' currentSort'; }?>"><?=$vehicle['derivative']?></td>
 					<td class="transmission<?php if( $orderby == 'transmission' ){ print ' currentSort'; }?>"><?=$vehicle['transmission']?></td>
-					<td class="ptratio<?php if( $orderby == 'ptratio' ){ print ' currentSort'; }?>"><?=$vehicle['ptratio']?></td>
-					<td class="co2<?php if( $orderby == 'co2' ){ print ' currentSort'; }?>"><?=$vehicle['co2']?></td>
+					<td class="numeric ptratio<?php if( $orderby == 'ptratio' ){ print ' currentSort'; }?>">2.0</td>
+					<td class="numeric co2<?php if( $orderby == 'co2' ){ print ' currentSort'; }?>"><?=$vehicle['co2']?></td>
 					<td class="details">
 	                	<a href="details<?=$i?>">Details</a>
 	            	</td>

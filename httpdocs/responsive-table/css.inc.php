@@ -25,6 +25,7 @@
 		font-weight: bold;
 		text-align: left;
 		margin-bottom: .5em;
+		font-size: 1.5em;
 	}
 
 	td, 
@@ -39,7 +40,7 @@
 	}
 
 	table tbody tr{
-		border-bottom: 2px solid #BBB;
+		border-bottom: 1px solid #BBB;
 	}
 
 	th.currentSort,
@@ -47,10 +48,7 @@
 		font-weight: bold;
 	}
 
-	table.result th.currentSort{
-		border-bottom: 4px solid #222;
-	}
-
+	th.numeric,
 	td.numeric{
 		text-align: right;
 	}
@@ -58,6 +56,14 @@
 	@media all and (min-width: 751px){
 		table thead th{
 			border-bottom: 2px solid #666;
+		}
+
+		table th.currentSort{
+			border-bottom: 4px solid #222;
+		}
+
+		tbody tr:hover{
+			background-color: #DDD;
 		}
 
 		td, 
@@ -85,13 +91,19 @@
 			float: left;
 		}
 
+		thead{
+			background-color: #DDD;
+			padding: 0.5em 0 0.5em 1em;
+			margin-bottom: 1em;
+		}
+
 		thead:before{
-			content: "Sort by: ";
+			content: "Sort results by...";
 			float: left;
-			margin-top: 0.5em;
 			margin-bottom: 0.5em;
 			font-size: 1.1em;
 			font-weight: bold;
+			color: #333;
 		}
 		
 		thead tr,
@@ -103,7 +115,11 @@
 		tr{
 			width: 100%;
 			float: left;
-			margin-bottom: 1.5em;
+		}
+
+		tbody tr{
+			margin-bottom: 1.3em;
+			padding-bottom: 1em;
 		}
 		
 		a{
@@ -126,14 +142,19 @@
 		td.make,
 		td.model{
 			font-weight: bold;
-			font-size: 1.3em;
+			font-size: 1.2em;
 			margin-bottom: 0.3em;
 		}
 
+		td.model{
+			padding-left: 0.2em;
+		}
+
 		td.derivative{
+			font-size: 1.2em;
 			clear: left;
 			width: 100%;
-			margin-bottom: 0.6em;
+			margin-bottom: 0.3em;
 		}
 
 		td.transmission,
@@ -141,13 +162,14 @@
 		td.co2 {
 			font-weight: bold;
 			clear: left;
+			margin-bottom: 0.4em;
 		}
 
 		td.transmission:before,
 		td.ptratio:before,
 		td.co2:before{
 			font-weight: normal;
-			padding-left: 1em;
+			padding-left: 1.5em;
 		}
 
 		td.transmission:before{
@@ -163,12 +185,12 @@
 		}
 
 		td.details{
-			width: 100%;
-			clear: left;
+			float: right;
 		}
 
 		td.details a{
 			float: right;
+			margin-top: -1em;
 		}
 
 	}
