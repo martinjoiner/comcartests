@@ -8,7 +8,8 @@
 
 </head>
 <body>
-
+	<section><!-- Tabbed section --></section>
+	
 	<h1>Testing VHost</h1>
 
 	<ul>
@@ -26,6 +27,8 @@
 	</ul>
 
 	<p>Martin would like a cup of tea please</p>
+
+	<p>Hello This is a tabbed line</p>
 
 </body>
 </html>
