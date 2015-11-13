@@ -4,112 +4,305 @@
 		<title>Combo Box Test</title>
 
 		<style type="text/css">
+
+			body{
+				font-family: arial;
+			}
+
 			.comboWrap{
 				float: left;
+				width: 400px;
 			}
+
 			.comboWrap > *{
-				width: 200px;
 				float: left;
 				clear: left;
 			}
+
+			.comboWrap .textInputWrap{
+				float: left;
+				width: 100%;
+				border: 1px solid #888;
+			}
+
+			.comboWrap .textInputWrap input[type=text]{
+				padding: 0 1em;
+				height: 30px;
+				line-height: 30px;
+				border: 0;
+				width: 350px;
+			}
+
+			.comboWrap .textInputWrap button{
+				float: right;
+				border: none;
+				background: transparent;
+			}
+
+			.combo-scroll{
+				position: absolute;
+				width: 400px;
+				max-height: 300px;
+				overflow: auto;
+				box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+			}
+
+			.combo-scroll ul{
+				padding: 0;
+			}
+
+			.combo-scroll > ul > li > header{
+				float: left;
+				clear: left;
+				font-weight: bold;
+			}
+
+			.combo-scroll li{
+				float: left;
+				clear: left;
+				width: 100%;
+			}
+
+			.combo-scroll > ul > li{
+				margin-bottom: 1em;
+			}
+
+			.combo-scroll ul{
+				list-style: none;
+			}
+
+			.combo-scroll button{
+				box-sizing: border-box;
+				display: block;
+				float: left;
+				clear: left;
+				width: 100%;
+				border: none;
+				border-bottom: 1px solid #AAA;
+				padding: 0.5em;
+				padding-left: 1.6em;
+				cursor: pointer;
+				text-align: left;
+				background-color: white;
+			}
+			.combo-scroll button:hover{
+				background-color: #FDE1FC;
+			}
+
+			.combo-scroll button.clickReact{
+
+				animation-duration: .5s;
+				-webkit-animation-duration: .5s;
+
+				animation-iteration-count: 1;
+				-webkit-animation-iteration-count: 1;
+
+				animation-name: flash;
+				-webkit-animation-name: flash;
+			}
+
+			@keyframes flash{
+				0%{
+					background-color: red;
+				}
+
+				33%{
+					background-color: white;
+				}
+
+				66%{
+					background-color: red;
+				}
+
+				100%{
+					background-color: white;
+				}
+			}
+
+			@-webkit-keyframes flash{
+				0%{
+					background-color: red;
+				}
+
+				33%{
+					background-color: white;
+				}
+
+				66%{
+					background-color: red;
+				}
+
+				100%{
+					background-color: white;
+				}
+			}
+
 		</style>
 
 	</head>
 	<body>
 		
-		<label for="inpOptions">Country</label>
+		<p><label for="inpOptions">Town Name</label></p>
 
 		<div class="comboWrap">
-			<input type="text" name="inpOptions" id="inpOptions">
-
-			<select id="lstOptions" size="5">
-				<optgroup label="Browsers">
-					<option value="Internet Explorer">Internet Explorer</option>
-					<option value="Firefox">Firefox</option>
-					<option value="Chrome">Chrome</option>
-					<option value="Opera">Opera</option>
-					<option value="Safari">Safari</option>
-				</optgroup>
-				<optgroup label="Lancashire">
-					<option>Fishtown</option>
-					<option>Newport</option>
-				</optgroup>
-				<optgroup label="Somerset">
-					<option>Yoevil</option>
-					<option>Taunton</option>
-					<option>Bridgwater</option>
-					<option>Wellington</option>
-					<option>North Petherton</option>
-				</optgroup>
-				<optgroup label="Wales">
-					<option>Newport</option>
-					<option>Cardiff</option>
-				</optgroup>
-			</select> 
+			<div class="textInputWrap">
+				<input type="text" name="ions" id="inpOptions">
+				<button id="btnClearCombo">X</button>
+			</div>
+			<div class="combo-scrollPositioner">
+				<div class="combo-scroll" id="lstOptions" size="5">
+					<ul>
+						<li class="combo-group">
+							<header>Browsers</header>
+							<ul>
+								<li><button data-id="1">Internet Explorer</button></li>
+								<li><button data-id="2">Firefox</button></li>
+								<li><button data-id="3">Chrome</button></li>
+								<li><button data-id="4">Opera</button></li>
+								<li><button data-id="5">Safari</button></li>
+							</ul>
+						</li>
+						<li class="combo-group">
+							<header>Lancashire</header>
+							<ul>
+								<li><button data-id="6">Fishtown</button></li>
+								<li><button data-id="7">Newport</button></li>
+							</ul>
+						</li>
+						<li class="combo-group">
+							<header>Somerset</header>
+							<ul>
+								<li><button data-id="8">Yoevil</button></li>
+								<li><button data-id="9">Taunton</button></li>
+								<li><button data-id="10">Bridgwater</button></li>
+								<li><button data-id="11">Wellington</button></li>
+								<li><button data-id="12">North Petherton</button></li>
+							</ul>
+						</li>
+						<li class="combo-group">
+							<header>Wales</header>
+							<ul>
+								<li><button data-id="13">Newport</button></li>
+								<li><button data-id="14">Cardiff</button></li>
+							</ul>
+						</li>
+					<ul>
+				</div><!-- /.combo-scroll -->
+			</div>
 		</div>
 	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
 		<script>
-			$('#inpOptions').on( 'keyup paste', function(){
-				
-				filterList( $(this).val(), '#lstOptions' )
 
+			window.firstOptionValue = $('#lstOptions button')[0].textContent;
+
+			$('#inpOptions').on( 'keyup paste', function(e){
+				// If down arrow key is clicked
+				if( e.keyCode === 40 ){
+					$('#lstOptions button')[0].focus();
+				}
+				filterList( $(this).val(), '#lstOptions' )
+			});
+
+			$('.textInputWrap button').click( function(){
+				$('#inpOptions').val('').keyup();
+			});
+
+			$('#lstOptions button').on( 'keydown', function(e){
+				// The up arrow key
+				if( e.keyCode === 38 ){
+					// If the current value is the first one, the user is trying to enter the text input
+					//console.log( "Currently focussed: " + $(this).html() );
+					//console.log( "Recorded first value: " + window.firstOptionValue );
+					if( $(this).html() === window.firstOptionValue ){
+						$('#inpOptions').focus();
+					}
+				}
 			});
 
 			// Called on a select box of options when the content of a text search box is changed 
 			function filterList( q, strSelector ){
-				var arrChildren = $('#lstOptions').children();
-				var iLimit = arrChildren.length;
-				var currentItem;
+				
+				var arrGroups = $('#lstOptions li.combo-group');
+				console.log( arrGroups );
+				var iLimit = arrGroups.length;
+				var currentItem,
+					thisGroupHeader;
+
+				window.firstOptionValue = '';
+
+				$('.combo-scroll').show();
+
+				$('#lstOptions button').removeClass('clickReact');
+
 				for( var i = 0; i < iLimit; i++ ){
-					currentItem = arrChildren[i];
-					if( currentItem.nodeName === 'OPTGROUP' ){
+					currentItem = arrGroups[i];
+					thisGroupHeader = $(currentItem).find('header').html();
 
-						// If the optgroup label matches, don't hide anything inside it
-						if( currentItem.label.match(q) ){
+					// If the groups header matches, don't hide anything inside it
+					if( thisGroupHeader.match(q) ){
+						$(currentItem).css('display', 'block');
+						makeOptionsVisible( currentItem );
+					} else {
+
+						if( filterOptGroup( q, currentItem ) ){
 							$(currentItem).css('display', 'block');
-							makeOptionsVisible( currentItem );
 						} else {
-
-							if( filterOptGroup( q, currentItem ) ){
-								$(currentItem).css('display', 'block');
-							} else {
-								$(currentItem).css('display', 'none');
-							}
+							$(currentItem).css('display', 'none');
 						}
 					}
 				}
 			}
 
+			function setFirstOptionValue( strValue ){
+				if( window.firstOptionValue === ''){
+					window.firstOptionValue = strValue;
+				}
+			}
+
 			// Makes any matching options visible and returns the number of visible children
 			function filterOptGroup( q, elemOptGroup ){
-				var arrOptions = $(elemOptGroup).children();
-				var iLimit = arrOptions.length;
-				var currentItem;
+				var arrOptionButtons = $(elemOptGroup).find('button');
+				var iLimit = arrOptionButtons.length;
+				var currentButton;
 				var returnCount = 0;
 				for( var i = 0; i < iLimit; i++ ){
-					currentItem = arrOptions[i];
-					if( currentItem.value.match(q) ){
-						$( currentItem ).css('display', 'block');
+					currentButton = arrOptionButtons[i];
+					if( $(currentButton).html().match(q) ){
+						$( currentButton ).css('display', 'block');
+						setFirstOptionValue( currentButton.textContent );
 						returnCount++; 
 					} else {
-						$( currentItem ).css('display', 'none');
+						$( currentButton ).css('display', 'none');
 					}
 				}
 				return returnCount;
 			}
 
-			// Takes an option group and makes all the child options visible
-			function makeOptionsVisible( elemOptGroup ){
-				var arrOptions = $(elemOptGroup).children();
-				var iLimit = arrOptions.length;
-				var currentItem;
-				for( var i = 0; i < iLimit; i++ ){
-					currentItem = arrOptions[i];
-					$( currentItem ).css('display', 'block');
-				}
 
+			// Takes a group and makes all the child options visible
+			function makeOptionsVisible( elemOptGroup ){
+				var arrOptionButtons = $(elemOptGroup).find('button');
+				var currentItem;
+				for( var i = 0, iLimit = arrOptionButtons.length; i < iLimit; i++ ){
+					currentItem = arrOptionButtons[i];
+					$( currentItem ).css('display', 'block');
+					setFirstOptionValue( currentItem.textContent );
+				}
+			}
+
+
+			$('#lstOptions button').click( function(e){
+				e.preventDefault();
+				transferListValToText( $(this) );
+				$(this).addClass('clickReact');
+				$('.combo-scroll').slideUp(400);
+			});
+
+			function transferListValToText( $option ){
+				$('#inpOptions').val( $option.html() );
+				
 			}
 
 		</script>
