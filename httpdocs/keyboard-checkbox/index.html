@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keyboard accessible checkboxes</title>
+
+    <style type="text/css">
+
+        body{
+            font-family: arial, sans-serif;
+            margin: 2em;
+        }
+
+        input[type=submit]{
+            -webkit-appearance: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        input[type=text],
+        input[type=email],
+        input[type=submit]{
+            padding: 0.5em;
+        }
+
+        .formRow{
+            float: left;
+            clear: left;
+            margin-bottom: 1em;
+        }
+
+        .formRow label{
+            float: left;
+            padding-top: 0.5em;
+            padding-right: 0.5em;
+            width: 140px;
+            text-align: right;
+        }
+
+        .formRow input[type=checkbox]{
+            display: none;
+        }
+
+        .formRow input[type=checkbox] + span.pseudoCheckbox {
+            color: white;
+            margin: 0 6px 6px 0;
+            background-color: #333;
+            background: radial-gradient(circle at 17px 15px, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 9px, #333333 10px);
+            border-radius: 18px;
+            padding: 8px 8px 8px 35px;
+            float: left;
+            cursor: pointer;
+        }
+
+        .formRow input[type=checkbox] + span.pseudoCheckbox:hover {
+            background-color: #65792B;
+            background: radial-gradient(circle at 17px 15px, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 9px, #65792b 10px);
+        }
+
+        .formRow input[type=checkbox]:checked + span.pseudoCheckbox {
+            color: #393635;
+            background-color: #fff;
+            background: radial-gradient(circle at 17px 15px, #ffffff, #ffffff 9px, #b5e426 10px);
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <h1>Fully accessible, <em>custom-styled</em> checkboxes</h1>
+
+    <p>
+        Our challenge is to produce a web form containing custom-styled checkboxes (ones that actually look good) 
+        which are also fully interactable by keyboard, granting accessibility for motor-impaired users, and sufficiently
+        semantecally marked-up to grant accessibility for visually impaired users.
+    </p>
+
+    <p>
+        <strong>Solution:</strong> We make use of the <code>role="checkbox"</code> and <code>aria-checked="true|false"</code> attributes to make a span (which is easily stylable) interactable. We then use a simple bit of Javascript to hook up the span and the checkbox so interactions with the span affect the hidden checkbox. A splash of title attributes for instructions and hey presto! We've pleased the designers, QA, UX and our lovely users.
+    </p>
+
+    <h2>Example Form</h2>
+
+    <form action="process.php" method="post">
+
+        <div class="formRow">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
+        </div>
+
+        <div class="formRow">
+            <label>Liked genres</label>
+
+            <input type="checkbox" name="includeme" value="true" id="chkRock">
+            <span role="checkbox" aria-checked="false" tabindex="0" class="pseudoCheckbox" data-checkbox="chkRock" title="Press or space bar to check or uncheck">Rock &amp; Roll</span>
+
+            <input type="checkbox" name="includeme" value="true" id="chkPop">
+            <span role="checkbox" aria-checked="false" tabindex="0" class="pseudoCheckbox" data-checkbox="chkPop" title="Press or space bar to check or uncheck">Pop</span>
+
+            <input type="checkbox" name="includeme" value="true" id="chkDance">
+            <span role="checkbox" aria-checked="false" tabindex="0" class="pseudoCheckbox" data-checkbox="chkDance" title="Press or space bar to check or uncheck">Dance</span>
+        </div>
+
+        <div class="formRow">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+        </div>
+
+        <div class="formRow">
+            <label>Marketing choice</label>
+            <input type="checkbox" name="sendmespam" value="true" id="chk2">
+            <span role="checkbox" aria-checked="false" tabindex="0" class="pseudoCheckbox" data-checkbox="chk2" title="Press or space bar to check or uncheck">Send me spam</span>
+        </div>
+
+        <div class="formRow">
+            <label>&nbsp;</label>
+            <input type="submit">
+        </div>
+
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+
+        $('.pseudoCheckbox').click( function(){
+            togglePseudoCheckbox( this );
+        }).keyup( function(e){
+            // Space bar
+            if( e.keyCode === 32 ){
+                togglePseudoCheckbox( this );
+            }
+        });
+
+        function togglePseudoCheckbox( $pseudoCheckbox ){
+            var checkboxID = $($pseudoCheckbox).data('checkbox');
+            var $checkbox = $('#'+checkboxID);
+            if( $($pseudoCheckbox).attr('aria-checked') === 'true' ){
+                $checkbox.prop('checked', false);
+                $($pseudoCheckbox).attr('aria-checked', 'false');
+            } else {
+                $checkbox.prop('checked', true);
+                $($pseudoCheckbox).attr('aria-checked', 'true');
+            }
+        }
+
+    </script>
+</body>
+</html>
