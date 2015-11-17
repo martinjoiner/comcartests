@@ -4,112 +4,326 @@
 		<title>Combo Box Test</title>
 
 		<style type="text/css">
+
+			body{
+				font-family: arial;
+			}
+
 			.comboWrap{
 				float: left;
+				width: 400px;
 			}
+
 			.comboWrap > *{
-				width: 200px;
 				float: left;
 				clear: left;
 			}
+
+			.comboWrap .textInputWrap{
+				float: left;
+				width: 100%;
+				border: 1px solid #888;
+			}
+
+			.comboWrap .textInputWrap input[type=text]{
+				padding: 0 1em;
+				height: 30px;
+				line-height: 30px;
+				border: 0;
+				width: 350px;
+			}
+
+			.comboWrap .textInputWrap button{
+				float: right;
+				border: none;
+				background: transparent;
+				height: 30px;
+				line-height: 30px;
+				color: grey;
+				cursor: pointer;
+			}
+
+			.comboWrap .textInputWrap button:disabled{
+				color: transparent;
+				cursor: default;
+			}
+
+			.comboWrap .textInputWrap button:not(:disabled):hover{
+				color: black;
+			}
+
+			.combo-scroll{
+				position: absolute;
+				width: 400px;
+				max-height: 240px;
+				overflow: auto;
+				box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+			}
+
+			.combo-scroll ul{
+				float: left;
+				width: 100%;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.combo-scroll li{
+				float: left;
+				clear: left;
+				width: 100%;
+			}
+
+			.combo-scroll button{
+				box-sizing: border-box;
+				display: block;
+				float: left;
+				clear: left;
+				width: 100%;
+				border: none;
+				border-bottom: 1px solid #AAA;
+				padding: 0.5em;
+				padding-left: 1.6em;
+				cursor: pointer;
+				text-align: left;
+				background-color: white;
+			}
+			.combo-scroll button:focus{
+				background-color: #E9EEEF;
+			}
+			.combo-scroll button:hover{
+				background-color: #E1E9EA;
+			}
+
+			.combo-scroll button.clickReact{
+
+				animation-duration: .5s;
+				-webkit-animation-duration: .5s;
+
+				animation-iteration-count: 1;
+				-webkit-animation-iteration-count: 1;
+
+				animation-name: flash;
+				-webkit-animation-name: flash;
+			}
+
+			.combo-scroll button span{
+				color: #888;
+			}
+
+			@keyframes flash{
+				0%{
+					background-color: #BCD3F9;
+				}
+
+				33%{
+					background-color: white;
+				}
+
+				66%{
+					background-color: #BCD3F9;
+				}
+
+				100%{
+					background-color: white;
+				}
+			}
+
+			@-webkit-keyframes flash{
+				0%{
+					background-color: #BCD3F9;
+				}
+
+				33%{
+					background-color: white;
+				}
+
+				66%{
+					background-color: #BCD3F9;
+				}
+
+				100%{
+					background-color: white;
+				}
+			}
+
+			.combo-report{
+				margin: 5px 0 1em 0;
+				padding: 0 0 0 1em;
+				font-size: 0.8em;
+				color: #888;
+			}
+
 		</style>
 
 	</head>
 	<body>
-		
-		<label for="inpOptions">Country</label>
 
 		<div class="comboWrap">
-			<input type="text" name="inpOptions" id="inpOptions">
-
-			<select id="lstOptions" size="5">
-				<optgroup label="Browsers">
-					<option value="Internet Explorer">Internet Explorer</option>
-					<option value="Firefox">Firefox</option>
-					<option value="Chrome">Chrome</option>
-					<option value="Opera">Opera</option>
-					<option value="Safari">Safari</option>
-				</optgroup>
-				<optgroup label="Lancashire">
-					<option>Fishtown</option>
-					<option>Newport</option>
-				</optgroup>
-				<optgroup label="Somerset">
-					<option>Yoevil</option>
-					<option>Taunton</option>
-					<option>Bridgwater</option>
-					<option>Wellington</option>
-					<option>North Petherton</option>
-				</optgroup>
-				<optgroup label="Wales">
-					<option>Newport</option>
-					<option>Cardiff</option>
-				</optgroup>
-			</select> 
+			<label for="inpOptions">Town Name</label>
+			<input type="hidden" name="event_town_id" id="event_town_id">
+			<div class="textInputWrap">
+				<input type="text" name="ions" id="inpOptions" placeholder="Type to filter list">
+				<button id="btnClearCombo" title="Clear input box" disabled>X</button>
+			</div>
+			<div class="combo-scrollPositioner">
+				<div class="combo-scroll" id="lstOptions" style="display: none;">
+					<ul>
+						<li><button data-id="1">Internet Explorer<span>, Browseville</span></button></li>
+						<li><button data-id="2">Firefox<span>, Browseville</span></button></li>
+						<li><button data-id="3">Chrome<span>, Browseville</span></button></li>
+						<li><button data-id="4">Opera<span>, Browseville</span></button></li>
+						<li><button data-id="5">Safari<span>, Browseville</span></button></li>
+						<li><button data-id="6">Fishtown<span>, Lancashire</span></button></li>
+						<li><button data-id="7">Newport<span>, Lancashire</span></button></li>
+						<li><button data-id="16">Portsmouth<span>, Hampshire</span></button></li>
+						<li><button data-id="17">Cosham<span>, Hampshire</span></button></li>
+						<li><button data-id="8">Yoevil<span>, Somerset</span></button></li>
+						<li><button data-id="9">Taunton<span>, Somerset</span></button></li>
+						<li><button data-id="10">Bridgwater<span>, Somerset</span></button></li>
+						<li><button data-id="11">Wellington<span>, Somerset</span></button></li>
+						<li><button data-id="12">North Petherton<span>, Somerset</span></button></li>
+						<li><button data-id="13">Newport<span>, Wales</span></button></li>
+						<li><button data-id="14">Cardiff<span>, Wales</span></button></li>
+					<ul>
+				</div><!-- /.combo-scroll -->
+			</div><!-- /.combo-scrollPositioner -->
+			<p class="combo-report"></p>
 		</div>
 	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
 		<script>
-			$('#inpOptions').on( 'keyup paste', function(){
-				
-				filterList( $(this).val(), '#lstOptions' )
 
+			String.prototype.stripTags = function(q){
+				return this.replace(/<[^>]+>/g,'');
+			}
+
+			String.prototype.phraseMatch = function(q){
+				var thisLCase = this.toLowerCase().stripTags().replace(/[^\w ]/g,' ').replace(/ {2,}/g, ' ').trim();
+
+				var qLCase = q.toLowerCase().trim().replace(/[^\w ]/g,' ');
+
+				// If there is not spaces, just return result of .match()
+				if( !qLCase.match(' ') ){
+					return thisLCase.match(qLCase);
+				}
+
+				var arrQWords = qLCase.split(' '),
+					thisWord,
+					arrMatches = [],
+					thisMatch;
+
+				for( var i = 0, iLimit = arrQWords.length; i < iLimit; i++ ){
+					thisWord = arrQWords[i];
+
+					thisMatch = thisLCase.match(thisWord);
+
+					if( thisMatch === null ){
+						return null;
+					} else {
+						arrMatches.concat(thisMatch);
+					}
+				}
+				return arrMatches;
+			}
+
+			// On init just set it to the first item
+			window.elemFirstOption = $('#lstOptions button')[0];
+
+			$('#inpOptions').on( 'keyup paste', function(e){
+
+				setClearButtonVisibility();
+
+				// If down arrow key is clicked
+				if( e.keyCode === 40 ){
+					$(window.elemFirstOption).focus();
+				}
+				filterList( $(this).val() );
 			});
 
-			// Called on a select box of options when the content of a text search box is changed 
-			function filterList( q, strSelector ){
-				var arrChildren = $('#lstOptions').children();
-				var iLimit = arrChildren.length;
-				var currentItem;
-				for( var i = 0; i < iLimit; i++ ){
-					currentItem = arrChildren[i];
-					if( currentItem.nodeName === 'OPTGROUP' ){
+			function setClearButtonVisibility(){
 
-						// If the optgroup label matches, don't hide anything inside it
-						if( currentItem.label.match(q) ){
-							$(currentItem).css('display', 'block');
-							makeOptionsVisible( currentItem );
-						} else {
-
-							if( filterOptGroup( q, currentItem ) ){
-								$(currentItem).css('display', 'block');
-							} else {
-								$(currentItem).css('display', 'none');
-							}
-						}
-					}
+				if( $('#inpOptions').val().length > 0 ){
+					$('#btnClearCombo').prop('disabled', false);
+				} else {
+					$('#btnClearCombo').prop('disabled', true);
 				}
 			}
 
-			// Makes any matching options visible and returns the number of visible children
-			function filterOptGroup( q, elemOptGroup ){
-				var arrOptions = $(elemOptGroup).children();
-				var iLimit = arrOptions.length;
-				var currentItem;
-				var returnCount = 0;
-				for( var i = 0; i < iLimit; i++ ){
-					currentItem = arrOptions[i];
-					if( currentItem.value.match(q) ){
-						$( currentItem ).css('display', 'block');
-						returnCount++; 
+			$('.textInputWrap button').click( function(){
+				$('#inpOptions').val('').focus().keyup();
+			});
+
+			$('#lstOptions button').on( 'keydown', function(e){
+				// The up arrow key
+				if( e.keyCode === 38 ){
+					// If the current value is the first one, the user is trying to enter the text input
+					if( $(this).html() === window.elemFirstOption.html() ){
+						$('#inpOptions').focus();
+					}
+				}
+			});
+
+			// Called on a list of options when the content of a text search box is changed 
+			function filterList(q){
+
+				// Reset the hidden input
+				$('#event_town_id').val('');
+				
+				var arrOptionButtons = $('#lstOptions li button'),
+					thisButton,
+					cntVisibleOptions = 0;
+
+				// Reset the listState 
+				window.elemFirstOption = null;
+
+				if( q.length ){
+					$('.combo-scroll').show();
+				} else {
+					$('.combo-scroll').hide();
+				}
+
+				$('#lstOptions button').removeClass('clickReact');
+
+				for( var i = 0, iLimit = arrOptionButtons.length; i < iLimit; i++ ){
+					thisButton = arrOptionButtons[i];
+
+					if( $(thisButton).html().phraseMatch(q) ){
+						$( thisButton ).css('display', 'block');
+						cntVisibleOptions++;
+						setFirstOptionValue( $(thisButton) ); 
 					} else {
-						$( currentItem ).css('display', 'none');
+						$( thisButton ).css('display', 'none');
 					}
+					
 				}
-				return returnCount;
+
+				if( cntVisibleOptions ){
+					$('.combo-report').html('');
+				} else {
+					$('.combo-report').html('No matches, this town will be created as a new entry.');
+				}
+				
 			}
 
-			// Takes an option group and makes all the child options visible
-			function makeOptionsVisible( elemOptGroup ){
-				var arrOptions = $(elemOptGroup).children();
-				var iLimit = arrOptions.length;
-				var currentItem;
-				for( var i = 0; i < iLimit; i++ ){
-					currentItem = arrOptions[i];
-					$( currentItem ).css('display', 'block');
+			function setFirstOptionValue( elem ){
+				if( window.elemFirstOption === null){
+					window.elemFirstOption = elem;
 				}
+			}
 
+			$('#lstOptions button').click( function(e){
+				e.preventDefault();
+				transferListValToText( $(this) );
+				$(this).addClass('clickReact');
+				$('.combo-scroll').slideUp(400);
+			});
+
+			function transferListValToText( $option ){
+				$('#event_town_id').val(  $option.data('id') );
+				$('#inpOptions').val( $option.html().stripTags() );
+				setClearButtonVisibility();				
 			}
 
 		</script>
